@@ -1,0 +1,363 @@
+:root {
+	--c1: #000000;
+	--c2: #525252;
+	--c3: #f5f5f5;
+	--c4: #ececec;
+	--ff: monospace;
+}
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+	box-shadow: 0 0 5px var(--c3);
+	border-radius: 5px;
+}
+
+html,
+body {
+	min-height: 100vh;
+}
+
+html {
+	--fz: 1vw;
+}
+
+body {
+	font-family: var(--ff);
+	font-size: var(--fz);
+	color: var(--c2);
+	padding-top: 150px;
+	padding-bottom: 150px;
+	overflow: hidden;
+}
+
+/* scene */
+.scene {
+	position: relative;
+	width: 50vw;
+	min-width: 360px;
+	height: 300px;
+	margin: 0 auto;
+	border: 1px solid var(--c4);
+	border-radius: 10px;
+	background-color: var(--c3);
+	transition: 0.5s ease;
+	overflow: hidden;
+}
+
+.scene--dark {
+	filter: invert(1);
+}
+
+.scene::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 75px;
+	width: 200vw;
+	height: 39px;
+	background-image: url(../img/road.png);
+	background-repeat: repeat-x;
+	animation: road-anim 10s linear infinite;
+	animation-play-state: paused;
+}
+
+.scene--run::before {
+	animation-play-state: running;
+}
+
+@keyframes road-anim {
+	100% {
+		transform: translateX(-125vw);
+	}
+}
+
+/* play */
+.play {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: var(--ff);
+	font-weight: 900;
+	font-size: 1em;
+	color: var(--c2);
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	z-index: 999;
+}
+
+.play::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 50vw;
+	min-width: 360px;
+	height: 300px;
+	background-color: rgba(196, 196, 196, 0.5);
+	z-index: -1;
+}
+
+.play.play--run {
+	display: none;
+}
+
+.play__icon {
+	width: 0;
+	height: 0;
+	margin-right: 15px;
+	border: 7px solid transparent;
+	border-top: 7px solid var(--c2);
+	border-right: 7px solid var(--c2);
+	transform: rotate(45deg);
+}
+
+.play__text {
+	letter-spacing: 3px;
+	pointer-events: none;
+}
+
+.play:hover .play__text {
+	animation: text-anim 1s ease-out infinite;
+}
+
+@keyframes text-anim {
+	25% { letter-spacing: 1px; }
+	50%, 100% { letter-spacing: 3px; }
+}
+
+/* dino */
+.dino {
+	position: absolute;
+	left: 55px;
+	bottom: 90px;
+	width: 50px;
+	height: 50px;
+	background-image: url(../img/dino-1.png);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	background-size: contain;
+	transition: bottom 0.5s linear;
+	z-index: 3;
+}
+
+.dino--run {
+	animation: dino-run 0.7s ease infinite;
+	animation-play-state: paused;
+}
+
+.scene--run .dino--run {
+	animation-play-state: running;
+}
+
+.dino--sit {
+	width: 65px;
+  height: 33px;
+	animation: dino-sit 0.7s ease infinite;
+	animation-play-state: paused;
+}
+
+.scene--run .dino--sit {
+	animation-play-state: running;
+}
+
+@keyframes dino-run {
+	0% { background-image: url(../img/dino-1.png); }
+	25%, 75% { background-image: url(../img/dino-3.png); }
+	50%, 100% { background-image: url(../img/dino-4.png); }
+}
+
+@keyframes dino-sit {
+	0%, 50%, 100% { background-image: url(../img/dino-6.png); }
+	25%, 75% { background-image: url(../img/dino-7.png); }
+}
+
+/* bird */
+.bird {
+	position: absolute;
+	right: -100px;
+	bottom: 125px;
+	width: 50px;
+	height: 50px;
+	background-image: url(../img/bird-1.png);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	background-size: contain;
+	animation: bird-run 0.4s ease infinite, bird-translate 4s linear;
+	animation-play-state: paused;
+	z-index: 2;
+}
+
+.scene--run .bird {
+	animation-play-state: running;
+}
+
+@keyframes bird-run {
+	0%, 100% { background-image: url(../img/bird-1.png); }
+	50% { background-image: url(../img/bird-2.png); }
+}
+
+@keyframes bird-translate {
+	100% {
+		transform: translateX(-100vw);
+	}
+}
+
+/* cloud */
+.cloud {
+	position: absolute;
+	right: -100px;
+	bottom: 190px;
+	width: 50px;
+	height: 50px;
+	background-image: url(../img/cloud.png);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	background-size: contain;
+	animation: cloud-translate 15s linear;
+	animation-play-state: paused;
+	z-index: 1;
+}
+
+.scene--run .cloud {
+	animation-play-state: running;
+}
+
+@keyframes cloud-translate {
+	100% {
+		transform: translateX(-100vw);
+	}
+}
+
+/* cactus */
+.cactus {
+	position: absolute;
+	right: -100px;
+	bottom: 90px;
+	width: 50px;
+	height: 45px;
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	background-size: contain;
+	animation: cactus-translate 8s linear;
+	animation-play-state: paused;
+	z-index: 2;
+}
+
+.cactus--1 {
+	background-image: url(../img/cactus-1.png);
+}
+
+.cactus--2 {
+	background-image: url(../img/cactus-2.png);
+}
+
+.cactus--3 {
+	background-image: url(../img/cactus-3.png);
+}
+
+.cactus--4 {
+	background-image: url(../img/cactus-4.png);
+}
+
+.cactus--5 {
+	height: 35px;
+	background-image: url(../img/cactus-5.png);
+}
+
+.cactus--6 {
+	height: 40px;
+	background-image: url(../img/cactus-6.png);
+}
+
+.cactus--7 {
+	height: 35px;
+	background-image: url(../img/cactus-7.png);
+}
+
+.cactus--8 {
+	height: 40px;
+	background-image: url(../img/cactus-8.png);
+}
+
+.cactus--9 {
+	height: 35px;
+	background-image: url(../img/cactus-9.png);
+}
+
+.scene--run .cactus {
+	animation-play-state: running;
+}
+
+@keyframes cactus-translate {
+	100% {
+		transform: translateX(-100vw);
+	}
+}
+
+/* result */
+.result {
+	position: absolute;
+	top: 30px;
+	right: 35px;
+	line-height: 1;
+	font-weight: 900;
+	font-size: 1em;
+	color: var(--c2);
+	z-index: 1;
+}
+
+.result__current,
+.result__record {
+	margin-left: 10px;
+}
+
+.result__current::before {
+	content: 'points:';
+	margin-right: 5px;
+	font-size: 0.8em;
+}
+
+.result__record::before {
+	content: 'record:';
+	margin-right: 5px;
+	font-size: 0.8em;
+}
+
+/* control */
+.control {
+	width: calc(50vw - 150px);
+	margin-top: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.control__title {
+	font-size: 1.1em;
+	font-weight: 900;
+	margin-bottom: 50px;
+}
+
+.control__item {
+	margin-bottom: 25px;
+}
+
+.control__key {
+	padding: 2px 5px;
+	font-weight: 900;
+	background-color: var(--c4);
+	border-radius: 5px;
+}

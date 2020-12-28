@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Dino</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<div class="scene">
+			<button class="play" type="button">
+				<span class="play__icon"></span>
+				<span class="play__text">Play</span>
+			</button>
+
+			<div class="dino"></div>
+
+			<div class="result">
+				<span class="result__current">0</span>
+				<span class="result__record">0</span>
+			</div>
+		</div>
+
+		<div class="control">
+			<div class="control__title">Controls</div>
+
+			<div class="control__item">
+				<span class="control__key">Space</span>
+				- start the game
+			</div>
+
+			<div class="control__item">
+				<span class="control__key">Esc</span>
+				- pause the game
+			</div>
+
+			<div class="control__item">
+				<span class="control__key">Arrow Up</span>
+				- to jump
+			</div>
+
+			<div class="control__item">
+				<span class="control__key">Arrow Down</span>
+				- sit down
+			</div>
+		</div>
+
+		<script src="js/util.js" defer></script>
+		<script src="js/switch-theme.js" defer></script>
+		<script src="js/points-counter.js" defer></script>
+		<script src="js/playing.js" defer></script>
+		<script src="js/birds-generate.js" defer></script>
+		<script src="js/clouds-generate.js" defer></script>
+		<script src="js/cactus-generate.js" defer></script>
+		<script src="js/main.js" defer></script>
+	</body>
+</html>
